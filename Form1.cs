@@ -26,6 +26,7 @@ namespace EmployeeApplication
                 position_ComboBox.Items.Add(displayList);
             }
         }
+
         private void frmEmployeeDatabase_Load(object sender, EventArgs e)
         {
             empList.Add(new Employee());
