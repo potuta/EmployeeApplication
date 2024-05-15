@@ -42,12 +42,14 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.empIDError_Label = new System.Windows.Forms.Label();
             this.update_Button = new System.Windows.Forms.Button();
+            this.delete_Button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // submitButton
             // 
             this.submitButton.BackColor = System.Drawing.Color.SteelBlue;
+            this.submitButton.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.submitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.submitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.submitButton.ForeColor = System.Drawing.Color.White;
@@ -161,6 +163,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(511, 281);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
             // 
             // empIDError_Label
@@ -178,7 +181,8 @@
             // 
             // update_Button
             // 
-            this.update_Button.BackColor = System.Drawing.Color.SteelBlue;
+            this.update_Button.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.update_Button.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.update_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.update_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.update_Button.ForeColor = System.Drawing.Color.White;
@@ -190,6 +194,22 @@
             this.update_Button.UseVisualStyleBackColor = false;
             this.update_Button.Visible = false;
             this.update_Button.Click += new System.EventHandler(this.update_Button_Click);
+            // 
+            // delete_Button
+            // 
+            this.delete_Button.BackColor = System.Drawing.Color.Transparent;
+            this.delete_Button.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.delete_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.delete_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.delete_Button.ForeColor = System.Drawing.Color.Black;
+            this.delete_Button.Location = new System.Drawing.Point(737, 37);
+            this.delete_Button.Name = "delete_Button";
+            this.delete_Button.Size = new System.Drawing.Size(51, 23);
+            this.delete_Button.TabIndex = 14;
+            this.delete_Button.Text = "Delete";
+            this.delete_Button.UseVisualStyleBackColor = false;
+            this.delete_Button.Visible = false;
+            this.delete_Button.Click += new System.EventHandler(this.delete_Button_Click);
             // 
             // frmEmployeeDatabase
             // 
@@ -210,6 +230,7 @@
             this.Controls.Add(this.empID_Label);
             this.Controls.Add(this.submitButton);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.delete_Button);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmEmployeeDatabase";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -236,6 +257,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label empIDError_Label;
         private System.Windows.Forms.Button update_Button;
+        private System.Windows.Forms.Button delete_Button;
     }
 }
 

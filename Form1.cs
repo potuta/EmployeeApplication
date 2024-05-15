@@ -19,7 +19,7 @@ namespace EmployeeApplication
 
         private void InitializeComboBox() 
         {
-            List<string> position = new List<string> { "Executive Management", "Middle Management", "Managers & Advisors", "Staff" };
+            ArrayList position = new ArrayList { "Executive Management", "Middle Management", "Managers & Advisors", "Staff" };
 
             foreach(string displayList in position)
             {
@@ -78,10 +78,12 @@ namespace EmployeeApplication
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 update_Button.Visible = true;
+                delete_Button.Visible = true;
             }
             else
             {
                 update_Button.Visible = false;
+                delete_Button.Visible = false;
             }
         }
 
@@ -99,7 +101,35 @@ namespace EmployeeApplication
             {
                 dataGridView1.ClearSelection();
                 update_Button.Visible = false;
+                delete_Button.Visible = false;
             }
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Delete) && dataGridView1.SelectedRows.Count >= 1)
+            {
+                foreach(DataGridViewRow row in dataGridView1.SelectedRows)
+                {
+                    empList.RemoveAt(row.Index);
+                }
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = empList;
+                update_Button.Visible = false;
+                delete_Button.Visible = false;
+            }
+        }
+
+        private void delete_Button_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                empList.RemoveAt(row.Index);
+            }
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = empList;
+            update_Button.Visible = false;
+            delete_Button.Visible = false;
         }
     }
 }
