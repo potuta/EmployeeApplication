@@ -94,7 +94,7 @@ namespace EmployeeApplication
 
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (dataGridView1.HitTest(e.X, e.Y).Type == DataGridViewHitTestType.None)
+            if (dataGridView1.HitTest(e.X, e.Y).Type == DataGridViewHitTestType.None || dataGridView1.HitTest(e.X, e.Y).Type == DataGridViewHitTestType.ColumnHeader)
             {
                 dataGridView1.ClearSelection();
                 update_Button.Visible = false;
