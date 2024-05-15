@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
+using System.Windows.Forms; 
 using EmployeeNamespace;
 
 namespace EmployeeApplication
@@ -25,6 +25,11 @@ namespace EmployeeApplication
             {
                 position_ComboBox.Items.Add(displayList);
             }
+        }
+        private void frmEmployeeDatabase_Load(object sender, EventArgs e)
+        {
+            empList.Add(new Employee());
+            dataGridView1.DataSource = empList;
         }
 
         private void submitButton_Click(object sender, EventArgs e)
@@ -57,14 +62,43 @@ namespace EmployeeApplication
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1)
+            if (e.RowIndex >= 0)
+            {
+                empID_TextBox.Text = dataGridView1.Rows[e.RowIndex].Cells["EmployeeID"].Value.ToString();
+                firstName_TextBox.Text = dataGridView1.Rows[e.RowIndex].Cells["FirstName"].Value.ToString();
+                lastName_TextBox.Text = dataGridView1.Rows[e.RowIndex].Cells["LastName"].Value.ToString();
+                position_ComboBox.Text = dataGridView1.Rows[e.RowIndex].Cells["Position"].Value.ToString();
+            }
+            else
             {
                 return;
             }
-            empID_TextBox.Text = dataGridView1.Rows[e.RowIndex].Cells["EmployeeID"].Value.ToString();
-            firstName_TextBox.Text = dataGridView1.Rows[e.RowIndex].Cells["FirstName"].Value.ToString();
-            lastName_TextBox.Text = dataGridView1.Rows[e.RowIndex].Cells["LastName"].Value.ToString();
-            position_ComboBox.SelectedItem = dataGridView1.Rows[e.RowIndex].Cells["Position"].Value.ToString();
+
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                update_Button.Visible = true;
+            }
+            else
+            {
+                update_Button.Visible = false;
+            }
+        }
+
+        private void update_Button_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells["EmployeeID"].Value = empID_TextBox.Text;
+            dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells["FirstName"].Value = firstName_TextBox.Text;
+            dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells["LastName"].Value = lastName_TextBox.Text;
+            dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells["Position"].Value = position_ComboBox.SelectedItem;
+        }
+
+        private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (dataGridView1.HitTest(e.X, e.Y).Type == DataGridViewHitTestType.None)
+            {
+                dataGridView1.ClearSelection();
+                update_Button.Visible = false;
+            }
         }
     }
 }

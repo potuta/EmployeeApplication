@@ -41,6 +41,7 @@
             this.empList_Label = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.empIDError_Label = new System.Windows.Forms.Label();
+            this.update_Button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -160,6 +161,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(511, 281);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
             // 
             // empIDError_Label
             // 
@@ -174,11 +176,27 @@
             this.empIDError_Label.Text = "Numeric characters only";
             this.empIDError_Label.Visible = false;
             // 
+            // update_Button
+            // 
+            this.update_Button.BackColor = System.Drawing.Color.SteelBlue;
+            this.update_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.update_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.update_Button.ForeColor = System.Drawing.Color.White;
+            this.update_Button.Location = new System.Drawing.Point(66, 306);
+            this.update_Button.Name = "update_Button";
+            this.update_Button.Size = new System.Drawing.Size(126, 32);
+            this.update_Button.TabIndex = 13;
+            this.update_Button.Text = "Update";
+            this.update_Button.UseVisualStyleBackColor = false;
+            this.update_Button.Visible = false;
+            this.update_Button.Click += new System.EventHandler(this.update_Button_Click);
+            // 
             // frmEmployeeDatabase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 357);
+            this.Controls.Add(this.update_Button);
             this.Controls.Add(this.empIDError_Label);
             this.Controls.Add(this.empList_Label);
             this.Controls.Add(this.title_Label);
@@ -196,6 +214,7 @@
             this.Name = "frmEmployeeDatabase";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employee Database";
+            this.Load += new System.EventHandler(this.frmEmployeeDatabase_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -216,6 +235,7 @@
         private System.Windows.Forms.Label empList_Label;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label empIDError_Label;
+        private System.Windows.Forms.Button update_Button;
     }
 }
 
