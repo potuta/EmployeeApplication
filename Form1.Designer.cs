@@ -43,6 +43,7 @@
             this.empIDError_Label = new System.Windows.Forms.Label();
             this.update_Button = new System.Windows.Forms.Button();
             this.delete_Button = new System.Windows.Forms.Button();
+            this.positionError_Label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -211,11 +212,25 @@
             this.delete_Button.Visible = false;
             this.delete_Button.Click += new System.EventHandler(this.delete_Button_Click);
             // 
+            // positionError_Label
+            // 
+            this.positionError_Label.AutoSize = true;
+            this.positionError_Label.BackColor = System.Drawing.Color.Transparent;
+            this.positionError_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.positionError_Label.ForeColor = System.Drawing.Color.IndianRed;
+            this.positionError_Label.Location = new System.Drawing.Point(83, 244);
+            this.positionError_Label.Name = "positionError_Label";
+            this.positionError_Label.Size = new System.Drawing.Size(105, 13);
+            this.positionError_Label.TabIndex = 15;
+            this.positionError_Label.Text = "Position not selected";
+            this.positionError_Label.Visible = false;
+            // 
             // frmEmployeeDatabase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 357);
+            this.Controls.Add(this.positionError_Label);
             this.Controls.Add(this.update_Button);
             this.Controls.Add(this.empIDError_Label);
             this.Controls.Add(this.empList_Label);
@@ -258,6 +273,7 @@
         private System.Windows.Forms.Label empIDError_Label;
         private System.Windows.Forms.Button update_Button;
         private System.Windows.Forms.Button delete_Button;
+        private System.Windows.Forms.Label positionError_Label;
     }
 }
 

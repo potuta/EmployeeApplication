@@ -41,22 +41,54 @@ namespace EmployeeApplication
 
         private void addEmployee()
         {
-            if (empID_TextBox.Text.Length > 0 && firstName_TextBox.Text.Length > 0 && lastName_TextBox.Text.Length > 0 && position_ComboBox.SelectedItem.ToString().Length > 0)
+            if (empID_TextBox.Text.Length > 0 && firstName_TextBox.Text.Length > 0 && lastName_TextBox.Text.Length > 0 && position_ComboBox.SelectedItem != null)
             {
                 if (Regex.IsMatch(empID_TextBox.Text, "^[0-9]+$"))
                 {
                     empList.Add(new Employee(empID_TextBox.Text, firstName_TextBox.Text, lastName_TextBox.Text, position_ComboBox.SelectedItem.ToString()));
                     empIDError_Label.Visible = false;
+                    positionError_Label.Visible = false;
                 }
                 else
                 {
                     empIDError_Label.Visible = true;
+                    positionError_Label.Visible = false;
                     return;
                 }
             }
             else if (empID_TextBox.Text.Length == 0 && firstName_TextBox.Text.Length == 0 && lastName_TextBox.Text.Length == 0 && position_ComboBox.SelectedItem == null)
             {
                 empList.Add(new Employee());
+            }
+
+            checkError();
+        }
+
+        private void checkError()
+        {
+            if (!Regex.IsMatch(empID_TextBox.Text, "^[0-9]+$") && empID_TextBox.Text.Length > 0 && firstName_TextBox.Text.Length > 0 && lastName_TextBox.Text.Length > 0 && position_ComboBox.SelectedItem == null)
+            {
+                empIDError_Label.Visible = true;
+                positionError_Label.Visible = true;
+                return;
+            }
+            else if (!Regex.IsMatch(empID_TextBox.Text, "^[0-9]+$") && empID_TextBox.Text.Length > 0 && firstName_TextBox.Text.Length > 0 && lastName_TextBox.Text.Length > 0 && position_ComboBox.SelectedItem != null)
+            {
+                empIDError_Label.Visible = true;
+                positionError_Label.Visible = false;
+                return;
+            }
+            else if (Regex.IsMatch(empID_TextBox.Text, "^[0-9]+$") && empID_TextBox.Text.Length > 0 && firstName_TextBox.Text.Length > 0 && lastName_TextBox.Text.Length > 0 && position_ComboBox.SelectedItem == null)
+            {
+                empIDError_Label.Visible = false;
+                positionError_Label.Visible = true;
+                return;
+            }
+            else if (Regex.IsMatch(empID_TextBox.Text, "^[0-9]+$") && empID_TextBox.Text.Length > 0 && firstName_TextBox.Text.Length > 0 && lastName_TextBox.Text.Length > 0 && position_ComboBox.SelectedItem != null)
+            {
+                empIDError_Label.Visible = false;
+                positionError_Label.Visible = false;
+                return;
             }
         }
 
@@ -74,7 +106,7 @@ namespace EmployeeApplication
                 return;
             }
 
-            if (dataGridView1.SelectedRows.Count == 1)
+            if (dataGridView1.SelectedRows.Count >= 1)
             {
                 update_Button.Visible = true;
                 delete_Button.Visible = true;
@@ -106,24 +138,35 @@ namespace EmployeeApplication
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.Delete) && dataGridView1.SelectedRows.Count >= 1)
+            if (e.KeyCode == Keys.Delete)
             {
-                foreach(DataGridViewRow row in dataGridView1.SelectedRows)
+                for (int i = 0; i < empList.Count; i++)
                 {
-                    empList.RemoveAt(row.Index);
+                    if (dataGridView1.Rows[i].Selected)
+                    {
+                        empList.RemoveAt(i);
+                    }
                 }
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = empList;
                 update_Button.Visible = false;
                 delete_Button.Visible = false;
             }
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                MessageBox.Show(dataGridView1.Rows.Count.ToString() + ", " + empList.Count.ToString());
+            }
         }
 
         private void delete_Button_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            for (int i = 0; i < empList.Count; i++)
             {
-                empList.RemoveAt(row.Index);
+                if (dataGridView1.Rows[i].Selected)
+                {
+                    empList.RemoveAt(i);
+                }
             }
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = empList;
