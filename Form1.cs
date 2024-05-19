@@ -152,11 +152,6 @@ namespace EmployeeApplication
                 update_Button.Visible = false;
                 delete_Button.Visible = false;
             }
-
-            if (e.KeyCode == Keys.Enter)
-            {
-                MessageBox.Show(dataGridView1.Rows.Count.ToString() + ", " + empList.Count.ToString());
-            }
         }
 
         private void delete_Button_Click(object sender, EventArgs e)
